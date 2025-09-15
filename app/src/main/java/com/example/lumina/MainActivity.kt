@@ -51,8 +51,8 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                         }
-                    ) {
-                        AppNavHost(navController, snackbarHostState)
+                    ) { innerPadding ->
+                        AppNavHost(navController, snackbarHostState, Modifier.padding(innerPadding))
                     }
                 }
             }

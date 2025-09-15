@@ -18,7 +18,7 @@ import com.example.lumina.R
 import com.example.lumina.ui.theme.Dimens
 
 @Composable
-fun LoginScreen(navController: NavController, snackbarHostState: SnackbarHostState) {
+fun LoginScreen(navController: NavController, snackbarHostState: SnackbarHostState, modifier: Modifier) {
     val scope = rememberCoroutineScope()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -60,7 +60,11 @@ fun LoginScreen(navController: NavController, snackbarHostState: SnackbarHostSta
             onClick = {
                 val user = FakeUserRepository.users.find { it.email == email && it.password == password }
                 scope.launch {
-                    if (user != null) snackbarHostState.showSnackbar("Bienvenido $email")
+                    if (user != null)
+                    {
+                        snackbarHostState.showSnackbar("Bienvenido $email")
+                        navController.navigate(Screen.MovieList.route)
+                    }
                     else snackbarHostState.showSnackbar("Error: credenciales inválidas")
                 }
             },
